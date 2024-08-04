@@ -1,32 +1,24 @@
 from fastapi import APIRouter, Request
-from utils.validate import TWILIO_SIGNATURE, validate_twilio
+from utils.validate import validate_twilio
+from app.core.twilio_config import TWILIO_SIGNATURE
 
 wprouter = APIRouter()
 
-@wprouter.post("/whatsbot")
+@wprouter.post("/receive_message")
 async def whatsbot(request: Request) -> dict:
     try:
-        print("tá chegando aqui")
+        #url = str(request.url)
 
-        url = request.url
+        form_ = await request.form()
+        origin = form_.get("From")
+        msg = form_.get("Body")
 
-        form = await request.form()
-        origin = form.get("From")
-        msg = form.get("Body")
+        #twilio_sign = request.headers.get(TWILIO_SIGNATURE)
 
-        post_data = dict(form)
-
-        twilio_sign = request.headers.get(TWILIO_SIGNATURE, "")
-
-        validate_twilio(url, post_data, twilio_sign)
+        #validate_twilio(url, form_, twilio_sign)
 
         print(origin)
         print(msg)
-
-#        print(post_data)
-
-#        from_number = post_data.get("From")
-#        body = post_data.get("Body")
 
         return {"msg": f"Message received from: {origin}: {msg}", "code": 200}
     

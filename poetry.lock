@@ -168,22 +168,22 @@ trio = ["trio (>=0.23)"]
 
 [[package]]
 name = "attrs"
-version = "23.2.0"
+version = "24.1.0"
 description = "Classes Without Boilerplate"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "attrs-23.2.0-py3-none-any.whl", hash = "sha256:99b87a485a5820b23b879f04c2305b44b951b502fd64be915879d77a7e8fc6f1"},
-    {file = "attrs-23.2.0.tar.gz", hash = "sha256:935dc3b529c262f6cf76e50877d35a4bd3c1de194fd41f47a2b7ae8f19971f30"},
+    {file = "attrs-24.1.0-py3-none-any.whl", hash = "sha256:377b47448cb61fea38533f671fba0d0f8a96fd58facd4dc518e3dac9dbea0905"},
+    {file = "attrs-24.1.0.tar.gz", hash = "sha256:adbdec84af72d38be7628e353a09b6a6790d15cd71819f6e9d7b0faa8a125745"},
 ]
 
 [package.extras]
-cov = ["attrs[tests]", "coverage[toml] (>=5.3)"]
-dev = ["attrs[tests]", "pre-commit"]
-docs = ["furo", "myst-parser", "sphinx", "sphinx-notfound-page", "sphinxcontrib-towncrier", "towncrier", "zope-interface"]
-tests = ["attrs[tests-no-zope]", "zope-interface"]
-tests-mypy = ["mypy (>=1.6)", "pytest-mypy-plugins"]
-tests-no-zope = ["attrs[tests-mypy]", "cloudpickle", "hypothesis", "pympler", "pytest (>=4.3.0)", "pytest-xdist[psutil]"]
+benchmark = ["cloudpickle", "hypothesis", "mypy (>=1.11.1)", "pympler", "pytest (>=4.3.0)", "pytest-codspeed", "pytest-mypy-plugins", "pytest-xdist[psutil]"]
+cov = ["cloudpickle", "coverage[toml] (>=5.3)", "hypothesis", "mypy (>=1.11.1)", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "pytest-xdist[psutil]"]
+dev = ["cloudpickle", "hypothesis", "mypy (>=1.11.1)", "pre-commit", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "pytest-xdist[psutil]"]
+docs = ["cogapp", "furo", "myst-parser", "sphinx", "sphinx-notfound-page", "sphinxcontrib-towncrier", "towncrier (<24.7)"]
+tests = ["cloudpickle", "hypothesis", "mypy (>=1.11.1)", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "pytest-xdist[psutil]"]
+tests-mypy = ["mypy (>=1.11.1)", "pytest-mypy-plugins"]
 
 [[package]]
 name = "certifi"
@@ -382,20 +382,21 @@ all = ["email_validator (>=2.0.0)", "httpx (>=0.23.0)", "itsdangerous (>=1.1.0)"
 
 [[package]]
 name = "fastapi-cli"
-version = "0.0.4"
+version = "0.0.5"
 description = "Run and manage FastAPI apps from the command line with FastAPI CLI. 🚀"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "fastapi_cli-0.0.4-py3-none-any.whl", hash = "sha256:a2552f3a7ae64058cdbb530be6fa6dbfc975dc165e4fa66d224c3d396e25e809"},
-    {file = "fastapi_cli-0.0.4.tar.gz", hash = "sha256:e2e9ffaffc1f7767f488d6da34b6f5a377751c996f397902eb6abb99a67bde32"},
+    {file = "fastapi_cli-0.0.5-py3-none-any.whl", hash = "sha256:e94d847524648c748a5350673546bbf9bcaeb086b33c24f2e82e021436866a46"},
+    {file = "fastapi_cli-0.0.5.tar.gz", hash = "sha256:d30e1239c6f46fcb95e606f02cdda59a1e2fa778a54b64686b3ff27f6211ff9f"},
 ]
 
 [package.dependencies]
 typer = ">=0.12.3"
+uvicorn = {version = ">=0.15.0", extras = ["standard"]}
 
 [package.extras]
-standard = ["fastapi", "uvicorn[standard] (>=0.15.0)"]
+standard = ["uvicorn[standard] (>=0.15.0)"]
 
 [[package]]
 name = "frozenlist"
@@ -1058,6 +1059,17 @@ files = [
 dev = ["atomicwrites (==1.4.1)", "attrs (==23.2.0)", "coverage (==7.4.1)", "hatch", "invoke (==2.2.0)", "more-itertools (==10.2.0)", "pbr (==6.0.0)", "pluggy (==1.4.0)", "py (==1.11.0)", "pytest (==8.0.0)", "pytest-cov (==4.1.0)", "pytest-timeout (==2.2.0)", "pyyaml (==6.0.1)", "ruff (==0.2.1)"]
 
 [[package]]
+name = "pytz"
+version = "2024.1"
+description = "World timezone definitions, modern and historical"
+optional = false
+python-versions = "*"
+files = [
+    {file = "pytz-2024.1-py2.py3-none-any.whl", hash = "sha256:328171f4e3623139da4983451950b28e95ac706e13f3f2630a879749e7a8b319"},
+    {file = "pytz-2024.1.tar.gz", hash = "sha256:2a29735ea9c18baf14b448846bde5a48030ed267578472d8955cd0e7443a9812"},
+]
+
+[[package]]
 name = "pyyaml"
 version = "6.0.1"
 description = "YAML parser and emitter for Python"
@@ -1197,19 +1209,20 @@ full = ["httpx (>=0.22.0)", "itsdangerous", "jinja2", "python-multipart (>=0.0.7
 
 [[package]]
 name = "twilio"
-version = "9.2.3"
+version = "8.5.0"
 description = "Twilio API client and TwiML generator"
 optional = false
 python-versions = ">=3.7.0"
 files = [
-    {file = "twilio-9.2.3-py2.py3-none-any.whl", hash = "sha256:76bfc39aa8d854510907cb7f9465814dfdea9e91ec199bb44f0785f05746f4cc"},
-    {file = "twilio-9.2.3.tar.gz", hash = "sha256:da2255b5f3753cb3bf647fc6c50edbdb367ebc3cde6802806f6f863058a65f75"},
+    {file = "twilio-8.5.0-py2.py3-none-any.whl", hash = "sha256:a6fdea2252cb7a8a47b5750d58abe1888bba9777482bac8e9bc3be47970facc7"},
+    {file = "twilio-8.5.0.tar.gz", hash = "sha256:f55da9b485f9070aef09836e56230d0e6fd83811d2e6668f20d9057dd3668143"},
 ]
 
 [package.dependencies]
 aiohttp = ">=3.8.4"
 aiohttp-retry = ">=2.8.3"
 PyJWT = ">=2.0.0,<3.0.0"
+pytz = "*"
 requests = ">=2.0.0"
 
 [[package]]
@@ -1259,13 +1272,13 @@ zstd = ["zstandard (>=0.18.0)"]
 
 [[package]]
 name = "uvicorn"
-version = "0.30.4"
+version = "0.30.5"
 description = "The lightning-fast ASGI server."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "uvicorn-0.30.4-py3-none-any.whl", hash = "sha256:06b00e3087e58c6865c284143c0c42f810b32ff4f265ab19d08c566f74a08728"},
-    {file = "uvicorn-0.30.4.tar.gz", hash = "sha256:00db9a9e3711a5fa59866e2b02fac69d8dc70ce0814aaec9a66d1d9e5c832a30"},
+    {file = "uvicorn-0.30.5-py3-none-any.whl", hash = "sha256:b2d86de274726e9878188fa07576c9ceeff90a839e2b6e25c917fe05f5a6c835"},
+    {file = "uvicorn-0.30.5.tar.gz", hash = "sha256:ac6fdbd4425c5fd17a9fe39daf4d4d075da6fdc80f653e5894cdc2fd98752bee"},
 ]
 
 [package.dependencies]
@@ -1600,4 +1613,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "8a01d7284f9e66656ecb3435e930205560a8cc73f630131ad143b01ac3d92db3"
+content-hash = "6df9d43a1eb6aaa6848546f1e00e63ad09fd7c5470f1de5e8ef949196fa090cb"

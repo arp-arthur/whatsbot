@@ -1,17 +1,20 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from utils.validate import TWILIO_SIGNATURE
+from app.core.twilio_config import TWILIO_SIGNATURE
 from app.api.endpoints.whatsbot import wprouter
 import os
+from dotenv import load_dotenv
 
-tunnel = os.getenv("NGROK_URL")
-print(tunnel)
+load_dotenv()
+
+tunnel_url = os.getenv("NGROK_HTTPS_URL")
 
 app = FastAPI()
 
 origins = [
     "http://localhost",
     "http://localhost:8080",
+    tunnel_url,
 ]
 
 allowed_headers = [

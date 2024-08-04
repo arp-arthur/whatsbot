@@ -1,8 +1,10 @@
 START_NGROK_SCRIPT = scripts/start_tunnel.sh
+END_TUNNEL_SCRIPT = scripts/end_tunnel.sh
 .EXPORT_ALL_VARIABLES:
-TWILIO_ACCOUNT_SID:="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-TWILIO_AUTH_TOKEN:="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-MY_NUMBER:="+xxxxxxxxxxxxxx"
+TWILIO_ACCOUNT_SID:="XXXXXXXXXXXXXXXXXXXXXXXXX"
+TWILIO_AUTH_TOKEN:="xxxxxxxxxxxxxxxxxxxxxxxxx"
+MY_NUMBER:="+xxxxxxxxxxxxx"
+env:=dev
 
 
 test:
