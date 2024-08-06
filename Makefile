@@ -4,7 +4,6 @@ END_TUNNEL_SCRIPT = scripts/end_tunnel.sh
 TWILIO_ACCOUNT_SID:="XXXXXXXXXXXXXXXXXXXXXXXXX"
 TWILIO_AUTH_TOKEN:="xxxxxxxxxxxxxxxxxxxxxxxxx"
 MY_NUMBER:="+xxxxxxxxxxxxx"
-env:=dev
 
 
 test:
