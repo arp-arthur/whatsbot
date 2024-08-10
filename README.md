@@ -33,7 +33,12 @@ make init
 
 5. Fill the both **.env files** (the one that you recently created and the other inside ./tools/database_manager folder) with your info (DB_HOST, DB_PORT, DB_USER, DB_PASS, DB_NAME)
 
-6. Make the database migration (in ./tools/database_manager)
+6. Installing database manager dependencies (./tools/database_manager)
+```bash
+make init
+```
+
+7. Make the database migration (in ./tools/database_manager)
 ```bash
 make migration
 make apply-migration
@@ -50,16 +55,16 @@ make start_tunnel
 
 3. The same thing for **Status callback URL** field with /whatsbot/status_callback at the end
 
-2. Start the API
+4. Start the API
 ```bash
 make run
 ```
 
-3. In your twilio account, initiate a whatsapp conversation (by reading the qr-code)
+5. In your twilio account, initiate a whatsapp conversation (by reading the qr-code)
 
-4. In whatsapp, send some message and watch how the chatbot works.
+6. In whatsapp, send some message and watch how the chatbot works.
 
-5. To end ngrok process:
+7. To end ngrok process:
 ```bash
 make end_tunnel
 ```
