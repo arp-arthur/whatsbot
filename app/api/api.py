@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.core.twilio_config import TWILIO_SIGNATURE
+from app.config.twilio_config import TWILIO_SIGNATURE
 from app.api.endpoints.whatsbot import wprouter
 import os
 from dotenv import load_dotenv
@@ -9,7 +9,11 @@ load_dotenv()
 
 tunnel_url = os.getenv("NGROK_HTTPS_URL")
 
-app = FastAPI()
+app = FastAPI(
+    title="Whatsbot API",
+    description="This is a whatsapp chatbot API custom made",
+    version="0.0.1",
+)
 
 origins = [
     "http://localhost",

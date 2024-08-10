@@ -1,9 +1,9 @@
 .EXPORT_ALL_VARIABLES:
-DB_USER:=db_user
-DB_PASS:=db_pass
-DB_HOST:=db_host
-DB_PORT:=db_port
-DB_NAME:=db_name
+DB_USER:=xxxx
+DB_PASS:=xxxx
+DB_HOST:=xxxxx
+DB_PORT:=xxxxx
+DB_NAME:=xxxxx
 
 
 init:
@@ -18,4 +18,4 @@ apply-migration:
 	@poetry run alembic upgrade head
 
 apply-downgrade:
-	@poetry run downgrade -1
+	@poetry run alembic downgrade -1

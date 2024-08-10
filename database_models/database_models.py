@@ -1,7 +1,9 @@
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Date, Integer, String, TIMESTAMP, func, ForeignKey, Text, Boolean
+from sqlalchemy import Column, Date, Integer, String, TIMESTAMP, func, ForeignKey, Text, Boolean, Enum
 
 Base = declarative_base()
+
+message_types = Enum("name", "cpf_cnpj", "birth_date", "final", name="message_types_enum")
 
 class Clients(Base):
     __tablename__ = "clients"
@@ -18,6 +20,7 @@ class Messages(Base):
 
     message_id = Column(Integer, primary_key=True, autoincrement=True)
     message_text = Column(Text, nullable=False)
+    message_type = Column(message_types, nullable=False)
 
 class ClientSessions(Base):
     __tablename__ = "client_sessions"

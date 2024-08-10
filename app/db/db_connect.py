@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from app.core.log_config import logger
+from app.config.log_config import logger
 import os
 
 DATABASE_URL = os.getenv("DATABASE_URL")
