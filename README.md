@@ -1,6 +1,6 @@
 # Whastbot - A simple chatbot for whatsapp
 
-The goal of this project is to have a fully functional chatbot for filter client info for later support.
+The goal of this project is to have a fully functional chatbot to filter client info for later support.
 
 ## Contents
 - [Installation](#installation)
