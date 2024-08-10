@@ -4,7 +4,7 @@ from app.config.twilio_config import TWILIO_SIGNATURE
 from app.services.message_manager import Message
 from app.db.db_operations import DatabaseOperations
 from app.pydantic_models.build_objects import BuildObjects
-from app.pydantic_models.pydantic_models import MessageModel, PayloadModel
+from app.pydantic_models.pydantic_models import MessageModel, StatusCallback
 from app.config.log_config import logger
 import traceback
 
@@ -28,6 +28,18 @@ def parse_request(payload) -> tuple:
         raise
 
     return origin, msg
+
+@wprouter.post("/status_callback", response_model=StatusCallback)
+async def status_callback(request: Request):
+    try:
+        form_ = await request.form()
+        message_sid = form_.get("MessageSid")
+        message_status = form_.get("MessageStatus")
+
+        return {"status": "received"}
+    except Exception as e:
+        logger.error({traceback.format_exc()})
+        return {"msg": f"There's something wrong. Transaction could not be concluded.", "code": 400}
     
 
 @wprouter.post("/receive_message", response_model=MessageModel)
@@ -53,20 +65,12 @@ async def whatsbot(request: Request, db: DatabaseOperations = Depends(get_db_ope
         client_id = db.get_client_by_phonenumber(origin)
 
         if client_id is not None:
-            if db.is_session_active(client_id):
-                message_to_insert_id, _, message_type_to_insert = db.get_message_from_client_id(client_id)
-                message_text_to_be_sent, _ = db.get_message(message_to_insert_id)
-                _, previous_message_type = db.get_message(message_to_insert_id-1)
-                db.update_client(previous_message_type, client_id, msg)
-            else:
-                message_to_be_sent_id, message_text_to_be_sent, message_type_to_be_sent = db.get_first_message()
-                message_to_insert_id, message_type_to_insert = message_to_be_sent_id, message_type_to_be_sent
+            message_to_insert_id, message_text_to_be_sent, message_type_to_insert = message_manager.process_client_message(db, client_id, msg)
         else:
             client = build_objects.build_new_client(origin)
             client_id = db.insert_new_client(client)
-
-            message_id, _, _ = db.get_first_message()
-            message_id += 1
+            message_to_insert_id, _, _ = db.get_first_message()
+            message_to_insert_id += 1
         
         message_manager.send_message(message_text_to_be_sent)
 

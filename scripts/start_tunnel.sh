@@ -30,7 +30,8 @@ if [ -n "$NGROK_HTTPS_URL" ]; then
     NGROK_HTTP_URL=$(echo $NGROK_HTTPS_URL | sed 's/https:/http:/')
 fi
 
-echo "NGROK_HTTP_URL=$NGROK_HTTP_URL" > .env
+echo >> .env
+echo "NGROK_HTTP_URL=$NGROK_HTTP_URL" >> .env
 echo "NGROK_HTTPS_URL=$NGROK_HTTPS_URL" >> .env
 echo "NGROK_PID=$NGROK_PID" >> .env
 

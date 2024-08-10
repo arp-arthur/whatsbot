@@ -17,16 +17,17 @@ class ClientSession(BaseModel):
 class ClientSessionCreate(ClientSession):
     client_id: int
     message_id: int
-
+    
 class ClientCreate(BaseModel):
     phone_number: str
 
+    
 class MessageModel(BaseModel):
     msg: str
     code: int
 
-    class Config:
-        from_attributes = True
+class StatusCallback(BaseModel):
+    status: str
 
 class PayloadModel(BaseModel):
     To: str

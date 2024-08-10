@@ -37,16 +37,15 @@ class DatabaseOperations(BotDatabase):
             logger.error("Couldn't get client session")
             raise
 
-    def get_message(self, message_id: int) -> tuple | None:
+    def get_message_type(self, message_id: int) -> tuple | None:
         try:
             message = self.session.query(
-                models.Messages.message_text,
                 models.Messages.message_type
             ).filter(
                 models.Messages.message_id == message_id
             ).first()
 
-            return message
+            return message.message_type
         except SQLAlchemyError:
             logger.error("Couldn't get next message")
             raise
@@ -108,6 +107,7 @@ class DatabaseOperations(BotDatabase):
         try:
             logger.info("Updating client...")
             update_client = text(f"UPDATE clients set {message_type} = :incoming_message WHERE client_id = :client_id")
+            logger.info(update_client)
             self.session.execute(update_client, {"incoming_message": incoming_message, "client_id": client_id})
         except SQLAlchemyError:
             logger.error("Couldn't update client")
