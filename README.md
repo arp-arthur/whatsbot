@@ -23,7 +23,7 @@ make init
 
 ## Setup
 
-1. Install **ngrok**: I won't put instructions here 'cause it depends on you OS.
+1. Install **ngrok**: I won't put instructions here 'cause it depends on your OS.
 
 2. Create a twilio account.
 
@@ -58,6 +58,11 @@ make run
 3. In your twilio account, initiate a whatsapp conversation (by reading the qr-code)
 
 4. In whatsapp, send some message and watch how the chatbot works.
+
+5. To end ngrok process:
+```bash
+make end_tunnel
+```
 
 ## Author
 - **Arthur Pinheiro**  
