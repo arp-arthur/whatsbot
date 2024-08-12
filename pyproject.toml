@@ -2,7 +2,7 @@
 name = "whatsbot"
 version = "0.1.0"
 description = ""
-authors = ["Arthur <arp.arthur@gmail.com>"]
+authors = ["Arthur <>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
